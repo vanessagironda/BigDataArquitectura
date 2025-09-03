@@ -1,0 +1,177 @@
+--> Listar tablas
+
+sqoop list-tables \
+--connect "jdbc:mysql://172.16.5.4:3310/retail_db" \
+--username root \
+--password root
+
+--> Importando tablas como archivos de texto
+
+sqoop import \
+--connect "jdbc:mysql://172.16.5.4:3310/retail_db" \
+--username=root \
+--password=root \
+--table customers \
+--as-textfile \
+--target-dir=/user/datapath/datasets/customers \
+--delete-target-dir
+
+sqoop import \
+--connect "jdbc:mysql://172.16.5.4:3310/retail_db" \
+--username=root \
+--password=root \
+--table departments \
+--as-textfile \
+--target-dir=/user/datapath/datasets/departments \
+--delete-target-dir
+
+sqoop import \
+--connect "jdbc:mysql://172.16.5.4:3310/retail_db" \
+--username=root \
+--password=root \
+--table categories \
+--as-textfile \
+--target-dir=/user/datapath/datasets/categories \
+--delete-target-dir
+
+sqoop import \
+--connect "jdbc:mysql://172.16.5.4:3310/retail_db" \
+--username=root \
+--password=root \
+--table orders \
+--as-textfile \
+--target-dir=/user/datapath/datasets/orders \
+--delete-target-dir
+
+sqoop import \
+--connect "jdbc:mysql://172.16.5.4:3310/retail_db" \
+--username=root \
+--password=root \
+--table order_items \
+--as-textfile \
+--target-dir=/user/datapath/datasets/order_items \
+--delete-target-dir
+
+sqoop import \
+--connect "jdbc:mysql://172.16.5.4:3310/retail_db" \
+--username=root \
+--password=root \
+--table products \
+--as-textfile \
+--target-dir=/user/datapath/datasets/products \
+--delete-target-dir
+
+sqoop import \
+--connect "jdbc:mysql://172.16.5.4:3310/retail_db" \
+--username=root \
+--password=root \
+--table departments \
+--as-textfile \
+--target-dir=/user/datapath/datasets/departments_test \
+--delete-target-dir
+
+--> Importando tablas como archivos avros
+
+sqoop import \
+--connect "jdbc:mysql://172.16.5.4:3310/retail_db" \
+--username=root \
+--password=root \
+--table customers \
+--as-avrodatafile \
+--target-dir=/user/datapath/datasets/avro/customers \
+--delete-target-dir
+
+sqoop import \
+--connect "jdbc:mysql://172.16.5.4:3310/retail_db" \
+--username=root \
+--password=root \
+--table departments \
+--as-avrodatafile \
+--target-dir=/user/datapath/datasets/avro/departments \
+--delete-target-dir
+
+sqoop import \
+--connect "jdbc:mysql://172.16.5.4:3310/retail_db" \
+--username=root \
+--password=root \
+--table categories \
+--as-avrodatafile \
+--target-dir=/user/datapath/datasets/avro/categories \
+--delete-target-dir
+
+sqoop import \
+--connect "jdbc:mysql://172.16.5.4:3310/retail_db" \
+--username=root \
+--password=root \
+--table orders \
+--as-avrodatafile \
+--target-dir=/user/datapath/datasets/avro/orders \
+--delete-target-dir
+
+sqoop import \
+--connect "jdbc:mysql://172.16.5.4:3310/retail_db" \
+--username=root \
+--password=root \
+--table order_items \
+--as-avrodatafile \
+--target-dir=/user/datapath/datasets/avro/order_items \
+--delete-target-dir
+
+sqoop import \
+--connect "jdbc:mysql://172.16.5.4:3310/retail_db" \
+--username=root \
+--password=root \
+--table products \
+--as-avrodatafile \
+--target-dir=/user/datapath/datasets/avro/products \
+--delete-target-dir
+
+
+--> Uso de eval
+
+sqoop eval \
+--connect "jdbc:mysql://172.16.5.4:3310/retail_db" \
+--username root \
+--password root \
+--query "select count(1) from customers"
+
+
+--> Importamod todas las tablas
+
+sqoop import-all-tables \
+--connect "jdbc:mysql://172.16.5.4:3310/retail_db" \
+--username root \
+--password root \
+--warehouse-dir /user/datapath/retail_db/import-all-tables \
+--driver com.mysql.jdbc.Driver
+
+--> Importando con condiciones
+
+sqoop import \
+--connect "jdbc:mysql://172.16.5.4:3310/retail_db" \
+--username=root \
+--password=root \
+--table departments \
+--target-dir /user/datapath/datasets/retail.db/departments \
+--append \
+--fields-terminated-by '|' \
+--lines-terminated-by '\n' \
+--split-by department_id \
+--where "department_id <= 3" \
+--outdir java_files
+
+--> Exportando a mysql
+
+sqoop export --connect "jdbc:mysql://172.16.5.4:3310/retail_db" \
+--username root \
+--password root \
+--table departments2 \
+--export-dir /user/datapath/datasets/retail_ods.db/departments \
+--input-fields-terminated-by '|' \
+--input-lines-terminated-by '\n' \
+--num-mappers 2 \
+--batch \
+--outdir java_files
+
+--> Copiamos los archivos que contienen la estructura de nuestros avros
+>_ hdfs dfs -ls /user/datapath/datasets/avro/
