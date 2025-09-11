@@ -93,7 +93,7 @@ LIMIT 10;
 
 3 Importar la base de datos con la herramienta adminer
 
-#### ----------------------------- PRACTICA 2  --------------------------------------
+ ----------------------------- PRACTICA 2  --------------------------------------
 
 3 Importar la base de datos escogida a hdfs utilizando sqoop construyendo un archivo mis_datos_sqoop.sh
 ```     >_ sh /datanode/scripts/sqoop/mis_datos_sqoop.sh    ``` <br> 
@@ -103,7 +103,7 @@ LIMIT 10;
 ```     >_ hive     ``` <br> 
 ```     >_ select ... groupby     ``` <br> 
 
-
+###### Comandos de ayuda
 ------------ PARA SUBIR CAMBIOS
 git add . && git commit -m "update" && git push origin master
 
