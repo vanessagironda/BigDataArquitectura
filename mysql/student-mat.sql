@@ -1,3 +1,6 @@
+CREATE DATABASE bd_vanessa;
+USE bd_vanessa;
+
 CREATE TABLE IF NOT EXISTS `student_mat` (
     `school` VARCHAR(2) CHARACTER SET utf8,
     `sex` VARCHAR(1) CHARACTER SET utf8,
