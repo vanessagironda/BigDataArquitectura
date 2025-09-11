@@ -91,9 +91,9 @@ LIMIT 10;
 
 2 crear base de datos en mysql de su preferencia
 
-3 Importar la base de datos con la herramienta adminer/hue
+3 Importar la base de datos con la herramienta adminer
 
-#### ----------------------------- PRACTICA 1  --------------------------------------
+#### ----------------------------- PRACTICA 2  --------------------------------------
 
 3 Importar la base de datos escogida a hdfs utilizando sqoop construyendo un archivo mis_datos_sqoop.sh
 ```     >_ sh /datanode/scripts/sqoop/mis_datos_sqoop.sh    ``` <br> 
@@ -102,6 +102,10 @@ LIMIT 10;
 4 Construye una agragacion (procesamiento) para la tabla externa
 ```     >_ hive     ``` <br> 
 ```     >_ select ... groupby     ``` <br> 
+
+
+------------ PARA SUBIR CAMBIOS
+git pull origin master
 
 
 
