@@ -105,7 +105,5 @@ LIMIT 10;
 
 
 ------------ PARA SUBIR CAMBIOS
-git pull origin master
-
-
+git add . && git commit -m "update" && git push origin master
 
