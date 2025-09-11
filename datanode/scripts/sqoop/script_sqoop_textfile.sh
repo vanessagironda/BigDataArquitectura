@@ -1,6 +1,6 @@
 #!/bin/bash
 sqoop import \
---connect "jdbc:mysql://10.0.2.195:3310/retail_db" \
+--connect "jdbc:mysql://10.0.0.18:3310/retail_db" \
 --username=root \
 --password=root \
 --table customers \
@@ -9,7 +9,7 @@ sqoop import \
 --delete-target-dir > /tmp/log_customer.log
 
 sqoop import \
---connect "jdbc:mysql://10.0.2.195:3310/retail_db" \
+--connect "jdbc:mysql://10.0.0.95:3310/retail_db" \
 --username=root \
 --password=root \
 --table departments \
@@ -18,7 +18,7 @@ sqoop import \
 --delete-target-dir > /tmp/log_departments.log
 
 sqoop import \
---connect "jdbc:mysql://10.0.2.195:3310/retail_db" \
+--connect "jdbc:mysql:///10.0.12.186:3310/retail_db" \
 --username=root \
 --password=root \
 --table categories \
@@ -27,7 +27,7 @@ sqoop import \
 --delete-target-dir > /tmp/log_categories.log
 
 sqoop import \
---connect "jdbc:mysql://10.0.2.195:3310/retail_db" \
+--connect "jdbc:mysql://10.0.0.95:3310/retail_db" \
 --username=root \
 --password=root \
 --table orders \
@@ -36,7 +36,7 @@ sqoop import \
 --delete-target-dir > /tmp/log_orders.log
 
 sqoop import \
---connect "jdbc:mysql://10.0.2.195:3310/retail_db" \
+--connect "jdbc:mysql://10.0.0.95:3310/retail_db" \
 --username=root \
 --password=root \
 --table order_items \
@@ -45,10 +45,21 @@ sqoop import \
 --delete-target-dir > /tmp/log_order_items.log
 
 sqoop import \
---connect "jdbc:mysql://10.0.2.195:3310/retail_db" \
+--connect "jdbc:mysql://10.0.0.95:3310/retail_db" \
 --username=root \
 --password=root \
 --table products \
 --as-textfile \
 --target-dir=/user/datapath/datasets/products \
 --delete-target-dir > /tmp/log_products.log
+
+
+sqoop import \
+--connect "jdbc:mysql://10.0.12.186:3310/bd_vanessa" \
+--username=root \
+--password=root \
+--table student_mat \
+--split-by age \
+--as-textfile \
+--target-dir=/user/raw/mysql/bd_vanessa/t_student_mat \
+--delete-target-dir > /tmp/log_customer.log
