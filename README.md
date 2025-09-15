@@ -156,6 +156,9 @@ LIMIT 10;
 - Para bajar todos los contenedores
 
 ```     >_docker compose down``` <br> 
+- Para subir los contenedores desde cero
+
+```    >_ docker-compose up     ``` <br>
 
 
 #### ---------------------------- PRACTICA 5  Procesamiento con spark --------------------------------------
