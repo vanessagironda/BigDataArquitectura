@@ -75,7 +75,7 @@ En el terminal de hive-server ejecutamos lo siguiente para crear las tablas. <br
 
 En el terminal de hive-server ejecutamos
 ```     >_ hive     ``` <br> 
-```     >_ USE retail_db;         ```     >_
+```     >_ USE retail_db;         ```   <br> 
 SELECT 
     p.product_name,
     SUM(oi.quantity * oi.list_price) AS total_ventas
@@ -85,7 +85,7 @@ GROUP BY p.product_name
 ORDER BY total_ventas DESC
 LIMIT 10;
 
-#### ----------------------------- PRACTICA 1  --------------------------------------## 
+#### ----------------------------- PRACTICA 1  Computo Monolítico --------------------------------------## 
 
 1 Descargar un set de datos en formato csv
 
@@ -93,17 +93,72 @@ LIMIT 10;
 
 3 Importar la base de datos con la herramienta adminer
 
- ----------------------------- PRACTICA 2  --------------------------------------
+#### ---------------------------- PRACTICA 2  Computo distribuido --------------------------------------##
 
-3 Importar la base de datos escogida a hdfs utilizando sqoop construyendo un archivo mis_datos_sqoop.sh
-```     >_ sh /datanode/scripts/sqoop/mis_datos_sqoop.sh    ``` <br> 
-4 Crear una tabla externa con hive construyendo un archivo mis_tabla_hive.hql
+1 Importar la base de datos escogida a hdfs utilizando sqoop. Ayuda dentro de datanode
+```     >_ sh /datanode/scripts/sqoop/script_sqoop_textfile.sh    ``` <br> 
+2 Crear una tabla externa con hive. Ayuda dentro de hive-server
 ```     >_ hive -f /opt/hive.hql    ``` <br> 
-4 Construye una agragacion (procesamiento) para la tabla externa
+3 Construye una agragacion (procesamiento) para la tabla externa
 ```     >_ hive     ``` <br> 
 ```     >_ select ... groupby     ``` <br> 
 
-###### Comandos de ayuda
------------- PARA SUBIR CAMBIOS
-git add . && git commit -m "update" && git push origin master
+#### ---------------------------- PRACTICA 3  AJUSTES --------------------------------------
+1 Copiamos el README.md nueva a su repositorio 
 
+2 Hacer que mysql tenga un ip fijo
+
+     - Adicionar a docker-compse.yml
+         networks:
+            net_pet:
+                ipv4_address: 172.27.1.15
+     - Recompilar el datanode 
+```     >_ docker compose down mysql``` <br> 
+```     >_ docker compose up -d --build mysql``` <br> 
+     - Adicionar a script_sqoop_textfile.sh
+     sqoop import \
+            --connect "jdbc:mysql://mysql:3306/retail_db" \
+            --username=root \
+            --password=root \
+            --table customers \
+            --as-textfile \
+            --target-dir=/user/datapath/datasets/customers \
+            --delete-target-dir > /tmp/log_customer.log
+
+
+#### ---------------------------- PRACTICA 4  Base de datos persistente --------------------------------------
+
+1 Utilizamos la herramienta https://sqlizer.io/ para convertir una base con la que trabajar para convertir a un archivo nombre.sql
+
+2 Con el archivo nombre.sql adicionamos 
+```     >_ CREATE DATABASE bd_vanessa;``` <br> 
+```     >_ USE bd_vanessa;``` <br> 
+
+2 Pasamos el archivo a la carpeta  /mysql 
+
+3 Adicionamos en el archivo /mysql/Dockerfile 
+```     >_ COPY student-mat.sql /docker-entrypoint-initdb.d/    ``` <br> 
+
+4 Recreamos la imagen de mysql 
+```     >_ docker compose down mysql``` <br> 
+```     >_ docker compose up -d --build mysql``` <br> 
+
+5 Guardamos los cambios realizados en GIT 
+
+```     >_git add . && git commit -m "update" && git push origin master ``` <br> 
+
+###### Comandos de ayuda
+
+- Para subir cambios a git
+
+```     >_git add . && git commit -m "update" && git push origin master ``` <br> 
+
+- Para bajar todos los contenedores
+
+```     >_docker compose down``` <br> 
+
+
+#### ---------------------------- PRACTICA 5  Procesamiento con spark --------------------------------------
+
+1  Arrancamos spark 
+2 Entramos al puerto 

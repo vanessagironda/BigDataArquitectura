@@ -69,9 +69,9 @@ services:
       - ./mysqldata:/mysql/data
     env_file: 
       - ./mysql/variables.env
-    #networks:
-      #net_pet:
-        #ipv4_address: 172.27.1.15
+    networks:
+      net_pet:
+        ipv4_address: 172.27.1.15
 
   adminer:
     image: adminer
@@ -148,13 +148,14 @@ services:
     networks:
       net_pet:
         ipv4_address: 172.27.1.9
+
   jupyter:
    build: ./python
    restart: always
    ports:
-     - "8200:8888"
+     - "8200:8889"
    entrypoint:
-     jupyter lab --ip='0.0.0.0' --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''
+     jupyter lab --ip='0.0.0.0' --port=8889 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''
    volumes: 
      - ./python:/user/app
    networks:
