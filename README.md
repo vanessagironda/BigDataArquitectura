@@ -157,7 +157,6 @@ LIMIT 10;
 
 ```     >_docker compose down``` <br> 
 - Para subir los contenedores desde cero
-
 ```    >_ docker-compose up     ``` <br>
 
 
