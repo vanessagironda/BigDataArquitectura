@@ -164,3 +164,15 @@ LIMIT 10;
 
 1  Arrancamos spark 
 2 Entramos al puerto 
+
+
+### Liberar espacios 
+
+docker stop $(docker ps -aq)
+
+docker rm $(docker ps -aq)
+
+docker system prune -a -f --volumes
+
+docker compose up -d --build
+
