@@ -73,40 +73,41 @@ services:
       net_pet:
         ipv4_address: 172.27.1.15
 
-  adminer:
-    image: adminer
-    container_name: adminer
-    restart: always
-    ports:
-      - "8085:8080"   # Puerto que usarás para abrir en el navegador
-    networks:
-      net_pet:
-        ipv4_address: 172.27.1.20
-  hue:
-    image: gethue/hue:4.4.0
-    container_name: hue
-    restart: always
-    depends_on:
-      - namenode
-      - hive-server
-      - spark-master
-      - mysql
-    environment:
-      HUE_DATABASE_ENGINE: mysql
-      HUE_DATABASE_NAME: hue
-      HUE_DATABASE_USER: root
-      HUE_DATABASE_PASSWORD: root
-      HUE_DATABASE_HOST: mysql
-      HUE_DATABASE_PORT: 3306
-      HUE_CONF_HIVE_SERVER_HOST: hive-server
-      HUE_CONF_HIVE_SERVER_PORT: 10000
-    ports:
-      - "8888:8888"   # Puerto web para acceder a Hue
-    volumes:
-    - ./hue.ini:/usr/share/hue/desktop/conf/hue.ini
-    networks:
-      net_pet:
-        ipv4_address: 172.27.1.30
+#  adminer:
+#    image: adminer
+#    container_name: adminer
+#    restart: always
+#    ports:
+#      - "8085:8080"   # Puerto que usarás para abrir en el navegador
+#    networks:
+#      net_pet:
+#        ipv4_address: 172.27.1.20
+
+#  hue:
+#    image: gethue/hue:4.4.0
+#    container_name: hue
+#    restart: always
+#    depends_on:
+#      - namenode
+#      - hive-server
+#      - spark-master
+#      - mysql
+#    environment:
+#      HUE_DATABASE_ENGINE: mysql
+#      HUE_DATABASE_NAME: hue
+#      HUE_DATABASE_USER: root
+#      HUE_DATABASE_PASSWORD: root
+#      HUE_DATABASE_HOST: mysql
+#      HUE_DATABASE_PORT: 3306
+#      HUE_CONF_HIVE_SERVER_HOST: hive-server
+#      HUE_CONF_HIVE_SERVER_PORT: 10000
+#    ports:
+#      - "8888:8888"   # Puerto web para acceder a Hue
+#    volumes:
+#    - ./hue.ini:/usr/share/hue/desktop/conf/hue.ini
+#    networks:
+#      net_pet:
+#        ipv4_address: 172.27.1.30
 
   hive-server:
     image: bde2020/hive:2.3.2-postgresql-metastore
@@ -193,29 +194,29 @@ services:
      net_pet:
        ipv4_address: 172.27.1.11
   
-  superset:
-    image: apache/superset:latest
-    container_name: superset
-    restart: always
-    environment:
-      SUPERSET_SECRET_KEY: "my_superset_secret"
-      SUPERSET_CONFIG_PATH: /app/pythonpath/superset_config.py
-      # usuario admin inicial
-      ADMIN_USERNAME: admin
-      ADMIN_FIRST_NAME: Superset
-      ADMIN_LAST_NAME: Admin
-      ADMIN_EMAIL: admin@superset.com
-      ADMIN_PASSWORD: admin
-    ports:
-      - "8088:8088"
-    volumes:
-      - ./superset:/app/pythonpath
-    depends_on:
-      - mysql
-      - hive-server
-    networks:
-      net_pet:
-        ipv4_address: 172.27.1.40
+#  superset:
+#    image: apache/superset:latest
+#    container_name: superset
+#    restart: always
+#    environment:
+#      SUPERSET_SECRET_KEY: "my_superset_secret"
+#      SUPERSET_CONFIG_PATH: /app/pythonpath/superset_config.py
+#      # usuario admin inicial
+#      ADMIN_USERNAME: admin
+#      ADMIN_FIRST_NAME: Superset
+#      ADMIN_LAST_NAME: Admin
+#      ADMIN_EMAIL: admin@superset.com
+#      ADMIN_PASSWORD: admin
+#    ports:
+#      - "8088:8088"
+#    volumes:
+#      - ./superset:/app/pythonpath
+#    depends_on:
+#      - mysql
+#      - hive-server
+#    networks:
+#      net_pet:
+#        ipv4_address: 172.27.1.40
   
   # spark-worker2:
   #  image: bde2020/spark-worker:2.4.0-hadoop2.7
