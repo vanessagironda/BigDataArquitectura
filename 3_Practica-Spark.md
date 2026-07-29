@@ -32,10 +32,16 @@ port: 3310
 <br>
 Ejecutar ifconfig en terminal para obtener la ip (eth0)
 
-Ayuda 
+Ayuda Docker
 Recreamos la imagen de mysql     
 
 ```    >_ docker compose down mysql     ``` <br>
 ```    >_ docker compose up -d --build mysql     ``` <br>
+
+Para inicializar de auevo 
+1 En el codespace
+```    >_ docker rm -f $(docker ps -aq)     ``` <br>
+```    >_ docker network prune -f     ``` <br>
+
 
 # 3 Spark ingesta de Datos
