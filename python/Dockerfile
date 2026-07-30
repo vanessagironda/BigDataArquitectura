@@ -13,6 +13,7 @@ RUN apt-get update && \
 
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 
+#RUN apt-get -y install default-jre
 
 WORKDIR /user/app
 
