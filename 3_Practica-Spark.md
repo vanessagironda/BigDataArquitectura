@@ -36,11 +36,15 @@ Ayuda Docker
 Recreamos la imagen de mysql     
 
 ```    >_ docker compose down mysql     ``` <br>
+
 ```    >_ docker compose up -d --build mysql     ``` <br>
+
+```    >_ docker compose build --no-cache jupyter     ``` <br>
 
 Para inicializar de auevo 
 1 En el codespace
 ```    >_ docker rm -f $(docker ps -aq)     ``` <br>
+
 ```    >_ docker network prune -f     ``` <br>
 
 
