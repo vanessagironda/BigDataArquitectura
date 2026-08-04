@@ -83,6 +83,18 @@ No afecta a Hadoop, Kafka, MySQL, etc.
 
 ```    >_ docker compose -f docker-compose-actualizado.yml up -d jupyter     ``` <br>
 
+# 5 Ayuda Codespace
+Para inicializar de nuevo por eeroores de abrir un puerto
 
-# 3 Abrir el notebook
+1 Ejecuta:
+
+```    >_ Ctrl + Shift + P     ``` <br>
+
+2 Luego:
+
+```    >_ Developer: Reload Window     ``` <br>
+
+
+
+# 6 Abrir el notebook
 
