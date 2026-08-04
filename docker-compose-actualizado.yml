@@ -72,6 +72,7 @@ services:
       - spark-master
     ports:
       - "8200:8888"
+      - "4040-4050:4040-4050"
     volumes:
       - ./jupyter/notebooks:/home/jovyan/work
     networks:
