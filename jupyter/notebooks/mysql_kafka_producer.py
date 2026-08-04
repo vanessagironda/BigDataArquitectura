@@ -24,7 +24,10 @@ producer = KafkaProducer(
 # ==================================================
 # CONTROL DEL ULTIMO ID
 # ==================================================
+# ultimo_order_id = 68884
 ultimo_order_id = 68884
+ultimo_order_item_id = 172198
+
 print("Kafka Producer iniciado...")
 # ==================================================
 # LOOP
@@ -70,10 +73,10 @@ while True:
             order_item_subtotal,
             order_item_product_price
         FROM order_items
-        WHERE order_item_order_id > %s
-        ORDER BY order_item_order_id
+        WHERE order_item_id > %s
+        ORDER BY order_item_id
         """,
-        (ultimo_order_id,)
+        (ultimo_order_item_id,)
     )
     items = cursor.fetchall()
     for item in items:
@@ -85,5 +88,6 @@ while True:
             "Kafka items:",
             item
         )
+        ultimo_order_item_id = item["order_item_id"]
     producer.flush()
     time.sleep(1)
