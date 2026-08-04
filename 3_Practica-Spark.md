@@ -32,7 +32,7 @@ port: 3310
 <br>
 Ejecutar ifconfig en terminal para obtener la ip (eth0)
 
-Ayuda Docker
+# 3 Ayuda Docker
 Recreamos la imagen de mysql     
 
 ```    >_ docker compose down mysql     ``` <br>
@@ -41,13 +41,40 @@ Recreamos la imagen de mysql
 
 ```    >_ docker compose build --no-cache jupyter     ``` <br>
 
-Para inicializar de auevo 
-1 En el codespace
+Para inicializar de nuevo 
+1 Detén todos los contenedores:
+
+```    >_ docker stop $(docker ps -q)     ``` <br>
+
+2. Elimina todos los contenedores:
+   
 ```    >_ docker rm -f $(docker ps -aq)     ``` <br>
 
-```    >_ docker system prune -af     ``` <br>
+3. Elimina todas las imágenes:
+   
+```    >_ docker network prune -f     ``` <br>
+
+4. Elimina todos los volúmenes:
+
+```    >_ docker volume rm $(docker volume ls -q)     ``` <br>
+
+5. Elimina las redes no predeterminadas:
 
 ```    >_ docker network prune -f     ``` <br>
+
+6. Finalmente limpia todo:
+
+```    >_ docker system prune -a --volumes -f     ``` <br>
+
+Validacion 
+
+```    >_ docker ps -a     ``` <br>
+
+```    >_ docker images     ``` <br>
+
+```    >_ docker volume ls     ``` <br>
+
+```    >_ docker network ls     ``` <br>
 
 
 
