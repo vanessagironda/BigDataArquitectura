@@ -53,6 +53,8 @@ while True:
         (ultimo_order_id,)
     )
     orders = cursor.fetchall()
+    print("Orders encontrados:", len(orders))
+    
     for order in orders:
         producer.send(
             "orders_topic",
@@ -83,6 +85,7 @@ while True:
         (ultimo_order_item_id,)
     )
     items = cursor.fetchall()
+    print("Items encontrados:", len(items))
     for item in items:
         producer.send(
             "order_items_topic",
