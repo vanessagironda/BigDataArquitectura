@@ -33,9 +33,12 @@ print("Kafka Producer iniciado...")
 # LOOP
 # ==================================================
 while True:
+    
     # ----------------------------
     # Buscar nuevos orders
     # ----------------------------
+    print("Buscando nuevos registros orders...")
+    
     cursor.execute(
         """
         SELECT
@@ -63,6 +66,7 @@ while True:
     # ----------------------------
     # Buscar order_items
     # ----------------------------
+    print("Buscando nuevos registros order_items...")
     cursor.execute(
         """
         SELECT
